@@ -9,13 +9,13 @@ public enum SortingMode {
     BY_EMAIL("email")
     ;
 
-    public Sort getSort() {
-        return sort;
+    public String[] getProperties() {
+        return properties;
     }
 
-    private final Sort sort;
+    private final String[] properties;
 
     SortingMode(String... properties) {
-        sort = Sort.by(properties);
+        this.properties = properties;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.dbmanagement.service;
+package com.example.dbmanagement.util;
 
 import org.springframework.stereotype.Component;
 

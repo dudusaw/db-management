@@ -10,17 +10,32 @@ public class SortingService {
     private final SortingMode[] allModes = SortingMode.values();
     private int currentMode = 0;
     private SortingMode sortingMode = allModes[currentMode];
+    private Sort.Direction direction = Sort.Direction.ASC;
 
     public Sort getSort() {
-        return sortingMode.getSort();
-    }
-
-    public String getSortingModeString() {
-        return sortingMode.toString();
+        return Sort.by(direction, sortingMode.getProperties());
     }
 
     public void nextSortingMode() {
         currentMode = (currentMode + 1) % allModes.length;
         sortingMode = allModes[currentMode];
+    }
+
+    public void changeSortingDirection() {
+        switch (direction) {
+            case ASC:
+                direction = Sort.Direction.DESC;
+                break;
+            case DESC:
+                direction = Sort.Direction.ASC;
+                break;
+        }
+    }
+
+    public String getSortingMode() {
+        return sortingMode.toString();
+    }
+    public String getDirection() {
+        return direction.toString();
     }
 }

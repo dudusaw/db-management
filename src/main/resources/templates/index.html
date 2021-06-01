@@ -40,7 +40,8 @@
                 <div class="control-buttons">
                     <a class="submit-button" th:href="@{/add-random}">Add random</a>
                     <a class="submit-button" th:href="@{/delete-all}">Delete all</a>
-                    <a class="submit-button" th:href="@{/change-sorting-mode}" th:text="|Sort ${sortingMode}|">Sort by...</a>
+                    <a class="submit-button" th:href="@{/change-sorting-mode}" th:text="|Sort ${sortingMode.getSortingMode()}|">Sort by...</a>
+                    <a class="submit-button" th:href="@{/change-sorting-direction}" th:text="${sortingMode.getDirection()}">Ascending</a>
                 </div>
                 <form class="search-field" th:action="@{/search}">
                     <input class="input-field search-input-field" type="text" name="inputText">

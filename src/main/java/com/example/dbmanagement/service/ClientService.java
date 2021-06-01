@@ -2,10 +2,9 @@ package com.example.dbmanagement.service;
 
 import com.example.dbmanagement.entity.Client;
 import com.example.dbmanagement.entity.ClientRepository;
-import com.example.dbmanagement.util.SortingMode;
+import com.example.dbmanagement.util.RandomGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

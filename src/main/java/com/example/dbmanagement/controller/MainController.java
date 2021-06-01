@@ -22,6 +22,16 @@ public class MainController {
         this.sortingService = sortingService;
     }
 
+    @ModelAttribute("clients")
+    public List<Client> clients() {
+        return clientService.findAll(sortingService.getSort());
+    }
+
+    @ModelAttribute("sortingMode")
+    public SortingService sortingMode() {
+        return sortingService;
+    }
+
     @GetMapping("/")
     public String home() {
         return "index";
@@ -38,6 +48,12 @@ public class MainController {
         String pattern = "%" + inputText + "%";
         List<Client> clients = clientService.searchFor(pattern);
         ui.addAttribute("clients", clients);
+        return "index";
+    }
+
+    @GetMapping("/change-sorting-direction")
+    public String changeSortingDirection() {
+        sortingService.changeSortingDirection();
         return "index";
     }
 }
