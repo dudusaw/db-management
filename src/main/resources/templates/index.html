@@ -30,8 +30,8 @@
             <label class="form-elem">Age <br><input class="input-field" type="number" name="age" min="0" max="100"
                                                     th:value="${updateClient != null} ? ${updateClient.age} : ''"></label><br>
             <div class="button-block">
-                <button class="submit-button form-elem" type="submit">Add/Update</button>
-                <a class="submit-button form-elem" th:if="${updateClient}" th:href="@{/}">Cancel Update</a>
+                <button class="submit-button form-elem" type="submit" th:text="${updateClient} ? 'Update' : 'Add'">Add/Update</button>
+                <a class="submit-button form-elem" th:if="${updateClient}" th:href="@{/}">Cancel</a>
             </div>
         </form>
 
@@ -68,7 +68,9 @@
                     <td th:text="*{client.age}">28</td>
                     <td th:text="*{client.registrationDateString()}">20.06.2000</td>
                     <td th:text="*{client.lastUpdateString()}">15.01.2021</td>
-                    <td><a th:href="@{/delete(id=*{client.id})}">Delete</a> | <a th:href="@{/update-request(id=*{client.id})}">Update</a></td>
+                    <td><a th:href="@{/delete(id=*{client.id})}">Delete</a>
+                        | <a th:href="@{/update-request(id=*{client.id})}">Update</a>
+                    </td>
                 </tr>
             </table>
         </div>

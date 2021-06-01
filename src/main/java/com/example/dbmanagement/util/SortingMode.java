@@ -1,7 +1,5 @@
 package com.example.dbmanagement.util;
 
-import org.springframework.data.domain.Sort;
-
 public enum SortingMode {
     BY_NAME("firstName", "lastName"),
     BY_ID("id"),
