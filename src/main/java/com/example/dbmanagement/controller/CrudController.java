@@ -1,8 +1,8 @@
 package com.example.dbmanagement.controller;
 
 import com.example.dbmanagement.entity.Client;
-import com.example.dbmanagement.service.ClientService;
-import com.example.dbmanagement.service.SortingService;
+import com.example.dbmanagement.service.impl.ClientService;
+import com.example.dbmanagement.service.impl.SortingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,7 +1,8 @@
-package com.example.dbmanagement.service;
+package com.example.dbmanagement.service.impl;
 
 import com.example.dbmanagement.entity.Client;
 import com.example.dbmanagement.entity.ClientRepository;
+import com.example.dbmanagement.service.IClientService;
 import com.example.dbmanagement.util.RandomGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ClientService {
+public class ClientService implements IClientService {
 
     private final ClientRepository clientRepository;
     private final RandomGenerator randomGenerator;
@@ -21,34 +22,42 @@ public class ClientService {
         this.randomGenerator = randomGenerator;
     }
 
+    @Override
     public List<Client> findAll() {
         return clientRepository.findAll();
     }
 
+    @Override
     public Client getById(Long aLong) {
         return clientRepository.getById(aLong);
     }
 
+    @Override
     public List<Client> findAll(Sort sort) {
         return clientRepository.findAll(sort);
     }
 
+    @Override
     public <S extends Client> S saveAndFlush(S s) {
         return clientRepository.saveAndFlush(s);
     }
 
+    @Override
     public void deleteById(Long aLong) {
         clientRepository.deleteById(aLong);
     }
 
+    @Override
     public void deleteAll() {
         clientRepository.deleteAll();
     }
 
+    @Override
     public List<Client> searchFor(String pattern) {
         return clientRepository.searchFor(pattern);
     }
 
+    @Override
     public void addRandomClient() {
         String firstName = randomGenerator.getRandomString(3, 8);
         String lastName = randomGenerator.getRandomString(3, 8);
