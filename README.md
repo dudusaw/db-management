@@ -2,11 +2,11 @@
 
 Client management web app
 
-To launch an app with docker:
+### To launch an app with docker:
 * clone or download
 * run boot-app.bat
 
-Used:
+### Used:
 * Java 8
 * Spring Boot
 * Spring MVC
