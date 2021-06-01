@@ -8,7 +8,7 @@
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/styles.css" th:href="@{/styles.css}">
+    <link rel="stylesheet" href="../static/my-styles.css" th:href="@{/my-styles.css}">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
     <h1 class="header">Client management app</h1>
 
     <div class="all-content-block">
-        <form class="form-block" th:action="${updateClient == null} ? '/add' : '/update?id='+${updateClient.id}" method="post">
+        <form class="form-block" th:action="${updateClient} ? @{/update(id=${updateClient.id})} : @{/add}" method="post">
             <h1 class="form-header">Add record</h1>
             <label class="form-elem">First name <br><input class="input-field" type="text" name="firstName"
                                                            th:value="${updateClient != null} ? ${updateClient.firstName} : ''"></label><br>
@@ -33,26 +33,34 @@
             </div>
         </form>
 
-        <table>
-            <tr>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
-                <th>Age</th>
-                <th>Registration date</th>
-                <th>Last update</th>
-                <th>Actions</th>
-            </tr>
-            <tr th:each="client : ${clients}">
-                <td th:text="*{client.firstName}">Eve</td>
-                <td th:text="*{client.lastName}">Jackson</td>
-                <td th:text="*{client.email}">asdf@gmail.com</td>
-                <td th:text="*{client.age}">28</td>
-                <td th:text="*{client.registrationDateString()}">20.06.2000</td>
-                <td th:text="*{client.lastUpdateString()}">15.01.2021</td>
-                <td><a th:href="@{/delete(id=*{client.id})}">Delete</a> | <a th:href="@{/update-request(id=*{client.id})}">Update</a></td>
-            </tr>
-        </table>
+        <div>
+            <div class="control-panel">
+                <a class="submit-button" th:href="@{/add-random}">Add random</a>
+                <a class="submit-button" th:href="@{/delete-all}">Delete all</a>
+                <a class="submit-button" th:href="@{/change-sorting-mode}" th:text="|Sort ${sortingMode}|">Sort by...</a>
+            </div>
+
+            <table>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Registration date</th>
+                    <th>Last update</th>
+                    <th>Actions</th>
+                </tr>
+                <tr th:each="client : ${clients}">
+                    <td th:text="*{client.firstName}">Eve</td>
+                    <td th:text="*{client.lastName}">Jackson</td>
+                    <td th:text="*{client.email}">asdf@gmail.com</td>
+                    <td th:text="*{client.age}">28</td>
+                    <td th:text="*{client.registrationDateString()}">20.06.2000</td>
+                    <td th:text="*{client.lastUpdateString()}">15.01.2021</td>
+                    <td><a th:href="@{/delete(id=*{client.id})}">Delete</a> | <a th:href="@{/update-request(id=*{client.id})}">Update</a></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
 

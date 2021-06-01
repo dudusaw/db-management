@@ -2,8 +2,8 @@ package com.example.dbmanagement.service;
 
 import com.example.dbmanagement.entity.Client;
 import com.example.dbmanagement.entity.ClientRepository;
+import com.example.dbmanagement.util.SortingMode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +13,12 @@ import java.util.List;
 public class ClientService {
 
     private final ClientRepository clientRepository;
+    private final RandomGenerator randomGenerator;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository) {
+    public ClientService(ClientRepository clientRepository, RandomGenerator randomGenerator) {
         this.clientRepository = clientRepository;
+        this.randomGenerator = randomGenerator;
     }
 
     public List<Client> findAll() {
@@ -37,5 +39,18 @@ public class ClientService {
 
     public void deleteById(Long aLong) {
         clientRepository.deleteById(aLong);
+    }
+
+    public void deleteAll() {
+        clientRepository.deleteAll();
+    }
+
+    public void addRandomClient() {
+        String firstName = randomGenerator.getRandomString(3, 8);
+        String lastName = randomGenerator.getRandomString(3, 8);
+        String email = randomGenerator.getRandomString(4, 10) + "@gmail.com";
+        int age = randomGenerator.getInt(100);
+        Client randomClient = new Client(firstName, lastName, email, age);
+        clientRepository.saveAndFlush(randomClient);
     }
 }
