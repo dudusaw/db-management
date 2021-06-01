@@ -13,4 +13,5 @@ Client management web app
 * Spring MVC
 * Spring Data JPA
 * Hibernate
+* PostgreSQL
 * Docker
