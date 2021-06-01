@@ -1,1 +1,3 @@
-java -jar jar/db-management-0.0.1-SNAPSHOT.jar --server.port=8080
+call mvnw clean package -DskipTests
+call cd docker/
+call docker-compose up
