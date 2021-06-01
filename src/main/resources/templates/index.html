@@ -14,7 +14,9 @@
 
 <div class="container">
 
-    <h1 class="header">Client management app</h1>
+    <h1 class="header">
+        <a class="header-link" th:href="@{/}">Client management app</a>
+    </h1>
 
     <div class="all-content-block">
         <form class="form-block" th:action="${updateClient} ? @{/update(id=${updateClient.id})} : @{/add}" method="post">
@@ -35,13 +37,20 @@
 
         <div>
             <div class="control-panel">
-                <a class="submit-button" th:href="@{/add-random}">Add random</a>
-                <a class="submit-button" th:href="@{/delete-all}">Delete all</a>
-                <a class="submit-button" th:href="@{/change-sorting-mode}" th:text="|Sort ${sortingMode}|">Sort by...</a>
+                <div class="control-buttons">
+                    <a class="submit-button" th:href="@{/add-random}">Add random</a>
+                    <a class="submit-button" th:href="@{/delete-all}">Delete all</a>
+                    <a class="submit-button" th:href="@{/change-sorting-mode}" th:text="|Sort ${sortingMode}|">Sort by...</a>
+                </div>
+                <form class="search-field" th:action="@{/search}">
+                    <input class="input-field search-input-field" type="text" name="inputText">
+                    <button class="submit-button" type="submit">Search</button>
+                </form>
             </div>
 
             <table>
                 <tr>
+                    <th>Id</th>
                     <th>First name</th>
                     <th>Last name</th>
                     <th>Email</th>
@@ -51,6 +60,7 @@
                     <th>Actions</th>
                 </tr>
                 <tr th:each="client : ${clients}">
+                    <td th:text="*{client.id}">1</td>
                     <td th:text="*{client.firstName}">Eve</td>
                     <td th:text="*{client.lastName}">Jackson</td>
                     <td th:text="*{client.email}">asdf@gmail.com</td>

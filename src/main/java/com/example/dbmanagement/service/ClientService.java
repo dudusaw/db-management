@@ -5,6 +5,7 @@ import com.example.dbmanagement.entity.ClientRepository;
 import com.example.dbmanagement.util.SortingMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,11 +46,15 @@ public class ClientService {
         clientRepository.deleteAll();
     }
 
+    public List<Client> searchFor(String pattern) {
+        return clientRepository.searchFor(pattern);
+    }
+
     public void addRandomClient() {
         String firstName = randomGenerator.getRandomString(3, 8);
         String lastName = randomGenerator.getRandomString(3, 8);
         String email = randomGenerator.getRandomString(4, 10) + "@gmail.com";
-        int age = randomGenerator.getInt(100);
+        int age = randomGenerator.getInt(100) + 1;
         Client randomClient = new Client(firstName, lastName, email, age);
         clientRepository.saveAndFlush(randomClient);
     }
