@@ -54,7 +54,7 @@ tr:hover:not(tr:first-child) {
 }
 
 .form-block {
-    margin: 0 0 64px 50px;
+    margin: 0 64px 64px 0;
     max-width: 400px;
     border: 1px solid #a3a3a3;
     border-radius: 20px;
@@ -65,6 +65,11 @@ tr:hover:not(tr:first-child) {
 .form-elem {
     display: inline-block;
     margin: 8px;
+}
+
+.all-content-block {
+    display: flex;
+    justify-content: space-between;
 }
 
 .submit-button {

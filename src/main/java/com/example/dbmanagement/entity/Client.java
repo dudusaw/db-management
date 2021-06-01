@@ -39,12 +39,14 @@ public class Client {
     @Column(nullable = false)
     private LocalDateTime lastUpdate = LocalDateTime.now();
 
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
+
     public String registrationDateString() {
-        return registrationDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"));
+        return registrationDate.format(FORMATTER);
     }
 
     public String lastUpdateString() {
-        return lastUpdate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"));
+        return lastUpdate.format(FORMATTER);
     }
 
     public Client(String firstName, String lastName, String email, Integer age) {

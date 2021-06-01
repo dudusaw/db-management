@@ -16,42 +16,44 @@
 
     <h1 class="header">Client management app</h1>
 
-    <form class="form-block" th:action="${updateClient == null} ? '/add' : '/update?id='+${updateClient.id}" method="post">
-        <h1 class="form-header">Add record</h1>
-        <label class="form-elem">First name <br><input class="input-field" type="text" name="firstName"
-                                                       th:value="${updateClient != null} ? ${updateClient.firstName} : ''"></label><br>
-        <label class="form-elem">Last name <br><input class="input-field" type="text" name="lastName"
-                                                      th:value="${updateClient != null} ? ${updateClient.lastName} : ''"></label><br>
-        <label class="form-elem">Email <br><input class="input-field" type="email" name="email"
-                                                  th:value="${updateClient != null} ? ${updateClient.email} : ''"></label><br>
-        <label class="form-elem">Age <br><input class="input-field" type="number" name="age" min="0" max="100"
-                                                th:value="${updateClient != null} ? ${updateClient.age} : ''"></label><br>
-        <div class="button-block">
-            <button class="submit-button form-elem" type="submit">Add/Update</button>
-            <a class="submit-button form-elem" th:if="${updateClient}" th:href="@{/}">Cancel Update</a>
-        </div>
-    </form>
+    <div class="all-content-block">
+        <form class="form-block" th:action="${updateClient == null} ? '/add' : '/update?id='+${updateClient.id}" method="post">
+            <h1 class="form-header">Add record</h1>
+            <label class="form-elem">First name <br><input class="input-field" type="text" name="firstName"
+                                                           th:value="${updateClient != null} ? ${updateClient.firstName} : ''"></label><br>
+            <label class="form-elem">Last name <br><input class="input-field" type="text" name="lastName"
+                                                          th:value="${updateClient != null} ? ${updateClient.lastName} : ''"></label><br>
+            <label class="form-elem">Email <br><input class="input-field" type="email" name="email"
+                                                      th:value="${updateClient != null} ? ${updateClient.email} : ''"></label><br>
+            <label class="form-elem">Age <br><input class="input-field" type="number" name="age" min="0" max="100"
+                                                    th:value="${updateClient != null} ? ${updateClient.age} : ''"></label><br>
+            <div class="button-block">
+                <button class="submit-button form-elem" type="submit">Add/Update</button>
+                <a class="submit-button form-elem" th:if="${updateClient}" th:href="@{/}">Cancel Update</a>
+            </div>
+        </form>
 
-    <table>
-        <tr>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Email</th>
-            <th>Age</th>
-            <th>Registration date</th>
-            <th>Last update</th>
-            <th>Actions</th>
-        </tr>
-        <tr th:each="client : ${clients}">
-            <td th:text="*{client.firstName}">Eve</td>
-            <td th:text="*{client.lastName}">Jackson</td>
-            <td th:text="*{client.email}">asdf@gmail.com</td>
-            <td th:text="*{client.age}">28</td>
-            <td th:text="*{client.registrationDateString()}">20.06.2000</td>
-            <td th:text="*{client.lastUpdateString()}">15.01.2021</td>
-            <td><a th:href="@{/delete(id=*{client.id})}">Delete</a> | <a th:href="@{/update-request(id=*{client.id})}">Update</a></td>
-        </tr>
-    </table>
+        <table>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Registration date</th>
+                <th>Last update</th>
+                <th>Actions</th>
+            </tr>
+            <tr th:each="client : ${clients}">
+                <td th:text="*{client.firstName}">Eve</td>
+                <td th:text="*{client.lastName}">Jackson</td>
+                <td th:text="*{client.email}">asdf@gmail.com</td>
+                <td th:text="*{client.age}">28</td>
+                <td th:text="*{client.registrationDateString()}">20.06.2000</td>
+                <td th:text="*{client.lastUpdateString()}">15.01.2021</td>
+                <td><a th:href="@{/delete(id=*{client.id})}">Delete</a> | <a th:href="@{/update-request(id=*{client.id})}">Update</a></td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 </body>
