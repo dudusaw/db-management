@@ -8,11 +8,3 @@ Client management web app
 * go to [localhost](http://localhost:8080/)
 
 You can then clear these images with clear.bat
-
-### Used:
-* Java 8
-* Spring Boot
-* Spring MVC
-* Spring Data JPA
-* PostgreSQL
-* Docker
