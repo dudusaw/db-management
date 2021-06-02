@@ -43,8 +43,8 @@ public class CrudController {
     }
 
     @GetMapping("/add-random")
-    public String addRandom() {
-        clientService.addRandomClient();
+    public String addRandom(@RequestParam(defaultValue = "1") int num) {
+        clientService.addRandomClient(num);
         return "redirect:/";
     }
 

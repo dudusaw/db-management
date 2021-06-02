@@ -20,5 +20,5 @@ public interface IClientService {
 
     List<Client> searchFor(String pattern);
 
-    void addRandomClient();
+    void addRandomClient(int num);
 }

@@ -60,12 +60,15 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public void addRandomClient() {
-        String firstName = randomGenerator.getRandomString(3, 8);
-        String lastName = randomGenerator.getRandomString(3, 8);
-        String email = randomGenerator.getRandomString(4, 10) + "@gmail.com";
-        int age = randomGenerator.getInt(100) + 1;
-        Client randomClient = new Client(firstName, lastName, email, age);
-        clientRepository.saveAndFlush(randomClient);
+    public void addRandomClient(int num) {
+        for (int i = 0; i < num; i++) {
+            String firstName = randomGenerator.getRandomString(3, 8);
+            String lastName = randomGenerator.getRandomString(3, 8);
+            String email = randomGenerator.getRandomString(4, 10) + "@gmail.com";
+            int age = randomGenerator.getInt(100) + 1;
+            Client randomClient = new Client(firstName, lastName, email, age);
+            clientRepository.save(randomClient);
+        }
+        clientRepository.flush();
     }
 }
