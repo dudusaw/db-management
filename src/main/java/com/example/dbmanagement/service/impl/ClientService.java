@@ -60,7 +60,7 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public void addRandomClient(int num) {
+    public void addRandomClients(int num) {
         for (int i = 0; i < num; i++) {
             String firstName = randomGenerator.getRandomString(3, 8);
             String lastName = randomGenerator.getRandomString(3, 8);

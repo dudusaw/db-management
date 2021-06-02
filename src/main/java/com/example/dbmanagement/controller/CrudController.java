@@ -3,6 +3,7 @@ package com.example.dbmanagement.controller;
 import com.example.dbmanagement.entity.Client;
 import com.example.dbmanagement.service.impl.ClientService;
 import com.example.dbmanagement.service.impl.SortingService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
+@Slf4j
 public class CrudController {
 
     private final ClientService clientService;
@@ -44,7 +46,7 @@ public class CrudController {
 
     @GetMapping("/add-random")
     public String addRandom(@RequestParam(defaultValue = "1") int num) {
-        clientService.addRandomClient(num);
+        clientService.addRandomClients(num);
         return "redirect:/";
     }
 
