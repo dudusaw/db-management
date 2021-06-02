@@ -19,4 +19,6 @@ public interface IPagingService {
     String getDirection();
 
     void firstPage();
+
+    void setPage(int page);
 }

@@ -71,4 +71,10 @@ public class MainController {
         pagingService.firstPage();
         return "redirect:/";
     }
+
+    @GetMapping("/go-to-page")
+    public String goToPage(@RequestParam(defaultValue = "1") int page) {
+        pagingService.setPage(page - 1);
+        return "redirect:/";
+    }
 }

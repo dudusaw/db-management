@@ -99,7 +99,7 @@ tr:hover:not(tr:first-child) {
     box-sizing: border-box;
     border-radius: 16px;
     display: inline-block;
-    padding: 8px 32px;
+    padding: 8px 16px;
     margin: 16px;
     color: black;
     text-decoration: none;
@@ -116,7 +116,7 @@ tr:hover:not(tr:first-child) {
 }
 
 .input-field {
-    margin: 16px;
+    margin: 8px;
     height: 40px;
     width: 30ch;
     padding: 8px;
@@ -149,9 +149,11 @@ tr:hover:not(tr:first-child) {
 
 .random-field {
     display: flex;
+    align-items: center;
     border: 1px solid #a3a3a3;
     border-radius: 8px;
     margin-bottom: 8px;
+    margin-right: 16px;
 }
 
 .random-input-field {

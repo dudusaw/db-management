@@ -47,6 +47,11 @@ public class PagingService implements IPagingService {
     }
 
     @Override
+    public void setPage(int page) {
+        currentPage = currentPage.withPage(page);
+    }
+
+    @Override
     public Pageable getPageable() {
         return currentPage;
     }
