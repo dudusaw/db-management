@@ -14,6 +14,5 @@ You can then clear these images with clear.bat
 * Spring Boot
 * Spring MVC
 * Spring Data JPA
-* Hibernate
 * PostgreSQL
 * Docker
