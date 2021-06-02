@@ -6,9 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="../static/my-styles.css" th:href="@{/my-styles.css}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/my-styles.css" th:href="@{/my-styles.css}">
 </head>
 <body>
 
@@ -38,7 +38,10 @@
         <div>
             <div class="control-panel">
                 <div class="control-buttons">
-                    <a class="submit-button" th:href="@{/add-random}">Add random</a>
+                    <form class="random-field" th:action="@{/add-random}">
+                        <input class="input-field random-input-field" type="number" name="num" min="1">
+                        <button class="submit-button" type="submit">Add random</button>
+                    </form>
                     <a class="submit-button" th:href="@{/delete-all}">Delete all</a>
                     <a class="submit-button" th:href="@{/change-sorting-mode}" th:text="|Sort ${sortingMode.getSortingMode()}|">Sort by...</a>
                     <a class="submit-button" th:href="@{/change-sorting-direction}" th:text="${sortingMode.getDirection()}">Ascending</a>
