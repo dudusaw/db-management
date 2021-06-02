@@ -2,14 +2,8 @@ package com.example.dbmanagement.controller;
 
 import com.example.dbmanagement.entity.Client;
 import com.example.dbmanagement.service.IClientService;
-import com.example.dbmanagement.service.ISortingService;
-import com.example.dbmanagement.service.impl.ClientService;
-import com.example.dbmanagement.service.impl.SortingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,17 +12,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Controller
 @Slf4j
 public class CrudController {
 
     private final IClientService clientService;
+    private final SharedAttributes sharedAttributes;
 
     @Autowired
-    public CrudController(IClientService clientService) {
+    public CrudController(IClientService clientService,
+                          SharedAttributes sharedAttributes) {
         this.clientService = clientService;
+        this.sharedAttributes = sharedAttributes;
     }
 
     @PostMapping("/add")
@@ -66,6 +62,7 @@ public class CrudController {
 
     @GetMapping("/update-request")
     public String updateRequest(Model ui, @RequestParam Long id) {
+        sharedAttributes.addSharedAttributesTo(ui);
         ui.addAttribute("updateClient", clientService.getById(id));
         return "index";
     }

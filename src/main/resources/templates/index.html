@@ -43,8 +43,8 @@
                         <button class="submit-button" type="submit">Add random</button>
                     </form>
                     <a class="submit-button" th:href="@{/delete-all}">Delete all</a>
-                    <a class="submit-button" th:href="@{/change-sorting-mode}" th:text="|Sort ${sortingMode.getSortingMode()}|">Sort by...</a>
-                    <a class="submit-button" th:href="@{/change-sorting-direction}" th:text="${sortingMode.getDirection()}">Ascending</a>
+                    <a class="submit-button" th:href="@{/change-sorting-mode}" th:text="|Sort ${pagingService.getSortingMode()}|">Sort by...</a>
+                    <a class="submit-button" th:href="@{/change-sorting-direction}" th:text="${pagingService.getDirection()}">Ascending</a>
                 </div>
                 <form class="search-field" th:action="@{/search}">
                     <input class="input-field search-input-field" type="text" name="inputText">
@@ -79,12 +79,13 @@
         </div>
     </div>
     <div class="paging-center">
-        <div class="paging-block" th:object="${pagination}">
-            <a href="#" th:href="@{/process-request(inputText=*{inputText}, startIndex=(*{startIndex} - *{maxElements}))}"
-               th:if="*{isFirstPage()}">&lt;</a>
-            <a href="#" class="active" th:text="*{currentPage}">1</a>
-            <a href="#" th:href="@{/process-request(inputText=*{inputText}, startIndex=(*{startIndex} + *{maxElements}))}"
-               th:unless="*{isLastPage}">&gt;</a>
+        <div class="paging-block" th:object="${pagingService.getPageable()}">
+            <a th:href="@{/first-page}"
+               th:if="*{hasPrevious()}">&lt;&lt;</a>
+            <a th:href="@{/prev-page}"
+               th:if="*{hasPrevious()}">&lt;</a>
+            <a class="active" th:text="*{getPageNumber() + 1}">1</a>
+            <a th:href="@{/next-page}">&gt;</a>
         </div>
     </div>
 </div>
