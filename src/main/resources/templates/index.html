@@ -78,6 +78,15 @@
             </table>
         </div>
     </div>
+    <div class="paging-center">
+        <div class="paging-block" th:object="${pagination}">
+            <a href="#" th:href="@{/process-request(inputText=*{inputText}, startIndex=(*{startIndex} - *{maxElements}))}"
+               th:if="*{isFirstPage()}">&lt;</a>
+            <a href="#" class="active" th:text="*{currentPage}">1</a>
+            <a href="#" th:href="@{/process-request(inputText=*{inputText}, startIndex=(*{startIndex} + *{maxElements}))}"
+               th:unless="*{isLastPage}">&gt;</a>
+        </div>
+    </div>
 </div>
 
 </body>

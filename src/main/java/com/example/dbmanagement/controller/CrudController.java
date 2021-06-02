@@ -1,10 +1,15 @@
 package com.example.dbmanagement.controller;
 
 import com.example.dbmanagement.entity.Client;
+import com.example.dbmanagement.service.IClientService;
+import com.example.dbmanagement.service.ISortingService;
 import com.example.dbmanagement.service.impl.ClientService;
 import com.example.dbmanagement.service.impl.SortingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,23 +24,11 @@ import java.util.List;
 @Slf4j
 public class CrudController {
 
-    private final ClientService clientService;
-    private final SortingService sortingService;
+    private final IClientService clientService;
 
     @Autowired
-    public CrudController(ClientService clientService, SortingService sortingService) {
+    public CrudController(IClientService clientService) {
         this.clientService = clientService;
-        this.sortingService = sortingService;
-    }
-
-    @ModelAttribute("clients")
-    public List<Client> clients() {
-        return clientService.findAll(sortingService.getSort());
-    }
-
-    @ModelAttribute("sortingMode")
-    public SortingService sortingMode() {
-        return sortingService;
     }
 
     @PostMapping("/add")

@@ -1,6 +1,8 @@
 package com.example.dbmanagement.service;
 
 import com.example.dbmanagement.entity.Client;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
@@ -19,6 +21,8 @@ public interface IClientService {
     void deleteAll();
 
     List<Client> searchFor(String pattern);
+
+    Page<Client> findAll(Pageable pageable);
 
     void addRandomClients(int num);
 }

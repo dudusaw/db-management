@@ -8,6 +8,7 @@ import java.util.Random;
 public class RandomGenerator {
 
     private final Random random = new Random();
+    private final StringBuilder sb = new StringBuilder();
     private static final int range = 26;
     private static final char first = 'a';
 
@@ -24,7 +25,7 @@ public class RandomGenerator {
         assert maxLength > 0;
         assert maxLength >= minLength;
 
-        StringBuilder sb = new StringBuilder();
+        sb.delete(0, sb.length());
         int size = random.nextInt(maxLength - minLength) + minLength;
         while (sb.length() < size) {
             char nextChar = (char) (random.nextInt(range) + first);

@@ -5,10 +5,13 @@ import com.example.dbmanagement.entity.ClientRepository;
 import com.example.dbmanagement.service.IClientService;
 import com.example.dbmanagement.util.RandomGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -60,15 +63,21 @@ public class ClientService implements IClientService {
     }
 
     @Override
+    public Page<Client> findAll(Pageable pageable) {
+        return clientRepository.findAll(pageable);
+    }
+
+    @Override
     public void addRandomClients(int num) {
+        List<Client> clientList = new ArrayList<>();
         for (int i = 0; i < num; i++) {
             String firstName = randomGenerator.getRandomString(3, 8);
             String lastName = randomGenerator.getRandomString(3, 8);
             String email = randomGenerator.getRandomString(4, 10) + "@gmail.com";
             int age = randomGenerator.getInt(100) + 1;
             Client randomClient = new Client(firstName, lastName, email, age);
-            clientRepository.save(randomClient);
+            clientList.add(randomClient);
         }
-        clientRepository.flush();
+        clientRepository.saveAllAndFlush(clientList);
     }
 }

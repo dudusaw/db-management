@@ -7,6 +7,8 @@ Client management web app
 * run boot-app.bat
 * go to [localhost](http://localhost:8080/)
 
+You can then clear these images with clear.bat
+
 ### Used:
 * Java 8
 * Spring Boot
