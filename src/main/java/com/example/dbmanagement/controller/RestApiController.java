@@ -34,7 +34,7 @@ public class RestApiController {
         return ResponseEntity.ok(clientService.save(client));
     }
 
-    @PostMapping("/{num}")
+    @PostMapping("/rand/{num}")
     public ResponseEntity<?> addRandomClient(@PathVariable("num") int num) {
         clientService.addRandomClients(num);
         return ResponseEntity.ok().build();

@@ -33,6 +33,10 @@ public class Client {
     @Column(nullable = false)
     private Integer age;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn()
+    private UserInfo userInfo;
+
     @Setter(AccessLevel.NONE)
     private LocalDateTime registrationDate = LocalDateTime.now();
 

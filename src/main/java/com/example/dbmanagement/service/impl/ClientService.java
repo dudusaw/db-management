@@ -2,6 +2,7 @@ package com.example.dbmanagement.service.impl;
 
 import com.example.dbmanagement.entity.Client;
 import com.example.dbmanagement.entity.ClientRepository;
+import com.example.dbmanagement.entity.UserInfo;
 import com.example.dbmanagement.service.IClientService;
 import com.example.dbmanagement.util.RandomGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,12 +73,23 @@ public class ClientService implements IClientService {
     @Override
     public void addRandomClients(int num) {
         for (int i = 0; i < num; i++) {
-            String firstName = randomGenerator.getRandomString(3, 8);
-            String lastName = randomGenerator.getRandomString(3, 8);
-            String email = randomGenerator.getRandomString(4, 10) + "@gmail.com";
-            int age = randomGenerator.getInt(100) + 1;
-            Client randomClient = new Client(firstName, lastName, email, age);
+            Client randomClient = generateClient();
+            randomClient.setUserInfo(generateUserInfo());
             clientRepository.save(randomClient);
         }
+    }
+
+    private UserInfo generateUserInfo() {
+        String login = randomGenerator.getRandomString(3, 10);
+        String password = randomGenerator.generatePassword(7, 15);
+        return new UserInfo(login, password);
+    }
+
+    private Client generateClient() {
+        String firstName = randomGenerator.getRandomString(3, 8);
+        String lastName = randomGenerator.getRandomString(3, 8);
+        String email = randomGenerator.getRandomString(4, 10) + "@gmail.com";
+        int age = randomGenerator.getInt(100) + 1;
+        return new Client(firstName, lastName, email, age);
     }
 }

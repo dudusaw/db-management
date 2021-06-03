@@ -41,10 +41,9 @@ public class CrudController {
 
     @PostMapping("/update")
     public String processUpdate(@ModelAttribute Client client, @RequestParam Long id) {
-        Client updatedClient = clientService.getById(id);
-        updatedClient.copyDataFrom(client);
-        updatedClient.setLastUpdate(LocalDateTime.now());
-        clientService.save(updatedClient);
+        client.setId(id);
+        client.setLastUpdate(LocalDateTime.now());
+        clientService.save(client);
         return "redirect:/";
     }
 
