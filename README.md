@@ -11,7 +11,7 @@ Client management web app
 You can then clear these images with clear.bat
 
 ## Rest api
-Method | Desc | Reference
+Method | Desc | url
 ------------ | ------------ | -------------
 (GET) | show all clients | [/api/clients](http://localhost:8080/api/clients)
 (GET) | find client by id | [/api/clients/1](http://localhost:8080/api/clients/1)
