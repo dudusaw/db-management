@@ -17,4 +17,4 @@ You can then clear these images with clear.bat
 * (DELETE) delete client by id [/api/clients/1](http://localhost:8080/api/clients/1)
 * (PUT) update client [/api/clients](http://localhost:8080/api/clients)
 * (POST) add new client through request body [/api/clients](http://localhost:8080/api/clients)
-* (POST) add random clients [/api/clients/rand/5](http://localhost:8080/api/clients/rand/5)
+* (POST) add 5 random clients [/api/clients/rand/5](http://localhost:8080/api/clients/rand/5)
