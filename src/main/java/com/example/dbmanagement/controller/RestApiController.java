@@ -26,7 +26,7 @@ public class RestApiController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Client> getClientById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(clientService.findById(id).orElseThrow());
+        return ResponseEntity.of(clientService.findById(id));
     }
 
     @PostMapping
