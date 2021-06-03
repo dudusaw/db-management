@@ -6,11 +6,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IClientService {
     List<Client> findAll();
-
-    Client getById(Long aLong);
 
     List<Client> findAll(Sort sort);
 
@@ -23,6 +22,8 @@ public interface IClientService {
     List<Client> searchFor(String pattern);
 
     Page<Client> findAll(Pageable pageable);
+
+    Optional<Client> findById(Long aLong);
 
     void addRandomClients(int num);
 }

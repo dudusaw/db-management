@@ -62,7 +62,7 @@ public class CrudController {
     @GetMapping("/update-request")
     public String updateRequest(Model ui, @RequestParam Long id) {
         sharedAttributes.addSharedAttributesTo(ui);
-        ui.addAttribute("updateClient", clientService.getById(id));
+        ui.addAttribute("updateClient", clientService.findById(id).orElseThrow());
         return "index";
     }
 }

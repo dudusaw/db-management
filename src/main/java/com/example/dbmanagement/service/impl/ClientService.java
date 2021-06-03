@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -28,16 +29,9 @@ public class ClientService implements IClientService {
         this.randomGenerator = randomGenerator;
     }
 
-
-
     @Override
     public List<Client> findAll() {
         return clientRepository.findAll();
-    }
-
-    @Override
-    public Client getById(Long aLong) {
-        return clientRepository.getById(aLong);
     }
 
     @Override
@@ -68,6 +62,11 @@ public class ClientService implements IClientService {
     @Override
     public Page<Client> findAll(Pageable pageable) {
         return clientRepository.findAll(pageable);
+    }
+
+    @Override
+    public Optional<Client> findById(Long aLong) {
+        return clientRepository.findById(aLong);
     }
 
     @Override
