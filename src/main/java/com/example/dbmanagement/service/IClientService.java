@@ -14,7 +14,7 @@ public interface IClientService {
 
     List<Client> findAll(Sort sort);
 
-    <S extends Client> S saveAndFlush(S s);
+    <S extends Client> S save(S s);
 
     void deleteById(Long aLong);
 

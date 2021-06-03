@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 @Entity
 @Table(name = "client")
@@ -37,6 +38,10 @@ public class Client {
 
     @Column(nullable = false)
     private LocalDateTime lastUpdate = LocalDateTime.now();
+
+    @Column(nullable = false, updatable = false)
+    @Setter(AccessLevel.NONE)
+    private String uuid = UUID.randomUUID().toString();
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
 

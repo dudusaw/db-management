@@ -29,7 +29,7 @@ public class CrudController {
 
     @PostMapping("/add")
     public String processAdd(@ModelAttribute Client client) {
-        clientService.saveAndFlush(client);
+        clientService.save(client);
         return "redirect:/";
     }
 
@@ -44,7 +44,7 @@ public class CrudController {
         Client updatedClient = clientService.getById(id);
         updatedClient.copyDataFrom(client);
         updatedClient.setLastUpdate(LocalDateTime.now());
-        clientService.saveAndFlush(updatedClient);
+        clientService.save(updatedClient);
         return "redirect:/";
     }
 

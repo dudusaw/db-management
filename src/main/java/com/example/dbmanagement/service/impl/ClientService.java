@@ -27,6 +27,8 @@ public class ClientService implements IClientService {
         this.randomGenerator = randomGenerator;
     }
 
+
+
     @Override
     public List<Client> findAll() {
         return clientRepository.findAll();
@@ -43,8 +45,8 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public <S extends Client> S saveAndFlush(S s) {
-        return clientRepository.saveAndFlush(s);
+    public <S extends Client> S save(S s) {
+        return clientRepository.save(s);
     }
 
     @Override
@@ -69,15 +71,13 @@ public class ClientService implements IClientService {
 
     @Override
     public void addRandomClients(int num) {
-        List<Client> clientList = new ArrayList<>();
         for (int i = 0; i < num; i++) {
             String firstName = randomGenerator.getRandomString(3, 8);
             String lastName = randomGenerator.getRandomString(3, 8);
             String email = randomGenerator.getRandomString(4, 10) + "@gmail.com";
             int age = randomGenerator.getInt(100) + 1;
             Client randomClient = new Client(firstName, lastName, email, age);
-            clientList.add(randomClient);
+            clientRepository.save(randomClient);
         }
-        clientRepository.saveAllAndFlush(clientList);
     }
 }
