@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/clients")
 public class RestApiController {
 
     private final IClientService clientService;
@@ -19,40 +19,40 @@ public class RestApiController {
         this.clientService = clientService;
     }
 
-    @GetMapping("/client/all")
+    @GetMapping
     public ResponseEntity<List<Client>> getAllClients() {
         return ResponseEntity.ok(clientService.findAll());
     }
 
-    @GetMapping("/client/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Client> getClientById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(clientService.getById(id));
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<Client> addClient(@RequestBody Client client) {
         return ResponseEntity.ok(clientService.save(client));
     }
 
-    @PostMapping("/add-random/{num}")
+    @PostMapping("/{num}")
     public ResponseEntity<?> addRandomClient(@PathVariable("num") int num) {
         clientService.addRandomClients(num);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<?> updateClient(@RequestBody Client client) {
         clientService.save(client);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteClientById(@PathVariable("id") Long id) {
         clientService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/delete/all")
+    @DeleteMapping
     public ResponseEntity<?> deleteAllClients() {
         clientService.deleteAll();
         return ResponseEntity.ok().build();
