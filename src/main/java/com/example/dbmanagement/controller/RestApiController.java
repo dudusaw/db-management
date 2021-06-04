@@ -29,6 +29,12 @@ public class RestApiController {
         return ResponseEntity.of(clientService.findById(id));
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<Client>> searchClients(@RequestParam("q") String q) {
+        String pattern = "%" + q + "%";
+        return ResponseEntity.ok(clientService.searchFor(pattern));
+    }
+
     @PostMapping
     public ResponseEntity<Client> addClient(@RequestBody Client client) {
         return ResponseEntity.ok(clientService.save(client));
