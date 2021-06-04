@@ -51,7 +51,7 @@
                     <a class="submit-button" th:href="@{/change-sorting-direction}" th:text="${pagingService.getDirection()}">Ascending</a>
                 </div>
                 <form class="search-field" th:action="@{/search}">
-                    <input class="input-field search-input-field" type="text" name="inputText">
+                    <input class="input-field search-input-field" type="text" name="q">
                     <button class="submit-button" type="submit">Search</button>
                 </form>
             </div>
