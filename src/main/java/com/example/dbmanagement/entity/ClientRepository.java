@@ -10,8 +10,8 @@ import java.util.List;
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
     @Query("select c from Client c " +
-            "where c.firstName like ?1 " +
-            "or c.lastName like ?1 " +
-            "or c.email like ?1")
+            "where lower(c.firstName) like lower(?1) " +
+            "or lower(c.lastName) like lower(?1) " +
+            "or lower(c.email) like lower(?1)")
     List<Client> searchFor(String pattern);
 }
