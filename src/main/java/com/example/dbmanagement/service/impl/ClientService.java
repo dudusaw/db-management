@@ -41,6 +41,9 @@ public class ClientService implements IClientService {
 
     @Override
     public <S extends Client> S save(S s) {
+        if (s.getUserInfo() == null) {
+            s.setUserInfo(new UserInfo());
+        }
         return clientRepository.save(s);
     }
 

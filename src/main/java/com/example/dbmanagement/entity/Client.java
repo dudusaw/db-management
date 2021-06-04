@@ -34,7 +34,6 @@ public class Client {
     private Integer age;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn()
     private UserInfo userInfo;
 
     @Setter(AccessLevel.NONE)

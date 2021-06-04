@@ -16,11 +16,9 @@ public class UserInfo {
     @Column(name = "id", columnDefinition = "BIGSERIAL")
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String login;
+    private String login = "";
 
-    @Column(nullable = false)
-    private String password;
+    private String password = "";
 
     public UserInfo(String login, String password) {
         this.login = login;
