@@ -59,6 +59,7 @@ public class ClientService implements IClientService {
 
     @Override
     public List<Client> searchFor(String pattern) {
+        pattern = "%" + pattern + "%";
         return clientRepository.searchFor(pattern);
     }
 

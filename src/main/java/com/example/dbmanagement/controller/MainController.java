@@ -40,10 +40,9 @@ public class MainController {
     }
 
     @GetMapping("/search")
-    public String search(Model ui, @RequestParam String inputText) {
+    public String search(Model ui, @RequestParam String q) {
         sharedAttributes.addSharedAttributesTo(ui);
-        String pattern = "%" + inputText + "%";
-        List<Client> clients = clientService.searchFor(pattern);
+        List<Client> clients = clientService.searchFor(q);
         ui.addAttribute("clients", clients);
         return "index";
     }

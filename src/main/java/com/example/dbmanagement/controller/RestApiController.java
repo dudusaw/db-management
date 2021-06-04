@@ -31,8 +31,7 @@ public class RestApiController {
 
     @GetMapping("/search")
     public ResponseEntity<List<Client>> searchClients(@RequestParam("q") String q) {
-        String pattern = "%" + q + "%";
-        return ResponseEntity.ok(clientService.searchFor(pattern));
+        return ResponseEntity.ok(clientService.searchFor(q));
     }
 
     @PostMapping
