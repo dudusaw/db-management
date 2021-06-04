@@ -15,6 +15,7 @@ Method | Desc | url
 ------------ | ------------ | -------------
 (GET) | show all clients | [/api/clients](http://localhost:8080/api/clients)
 (GET) | find client by id | [/api/clients/1](http://localhost:8080/api/clients/1)
+(GET) | search clients by request | [/api/clients/search?q=something](http://localhost:8080/api/clients/search?q=something)
 (DELETE) | delete all records | [/api/clients](http://localhost:8080/api/clients)
 (DELETE) | delete client by id | [/api/clients/1](http://localhost:8080/api/clients/1)
 (PUT) | update client | [/api/clients](http://localhost:8080/api/clients)
