@@ -6,7 +6,7 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 @Component
-public class RandomGenerator {
+public class RandomGenerator implements IRandomGenerator {
 
     private final Random random = new SecureRandom();
     private final StringBuilder sb = new StringBuilder();
@@ -17,18 +17,22 @@ public class RandomGenerator {
     private static final char password_first = '!';
     private static final int password_range = 126 - password_first;
 
+    @Override
     public int getInt(int bound) {
         return random.nextInt(bound);
     }
 
+    @Override
     public String getRandomString(int length) {
         return getRandomString(length, length, default_first, default_range);
     }
 
+    @Override
     public String generatePassword(int minLength, int maxLength) {
         return getRandomString(minLength, maxLength, password_first, password_range);
     }
 
+    @Override
     public String getRandomString(int minLength, int maxLength) {
         return getRandomString(minLength, maxLength, default_first, default_range);
     }

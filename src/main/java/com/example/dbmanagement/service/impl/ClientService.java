@@ -4,7 +4,7 @@ import com.example.dbmanagement.entity.Client;
 import com.example.dbmanagement.entity.repo.ClientRepository;
 import com.example.dbmanagement.entity.UserInfo;
 import com.example.dbmanagement.service.IClientService;
-import com.example.dbmanagement.util.RandomGenerator;
+import com.example.dbmanagement.util.IRandomGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,12 +23,12 @@ import java.util.Optional;
 public class ClientService implements IClientService {
 
     private final ClientRepository clientRepository;
-    private final RandomGenerator randomGenerator;
+    private final IRandomGenerator IRandomGenerator;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository, RandomGenerator randomGenerator) {
+    public ClientService(ClientRepository clientRepository, IRandomGenerator IRandomGenerator) {
         this.clientRepository = clientRepository;
-        this.randomGenerator = randomGenerator;
+        this.IRandomGenerator = IRandomGenerator;
     }
 
     @Override
@@ -87,16 +87,16 @@ public class ClientService implements IClientService {
     }
 
     private UserInfo generateUserInfo() {
-        String login = randomGenerator.getRandomString(3, 10);
-        String password = randomGenerator.generatePassword(7, 15);
+        String login = IRandomGenerator.getRandomString(3, 10);
+        String password = IRandomGenerator.generatePassword(7, 15);
         return new UserInfo(login, password);
     }
 
     private Client generateClient() {
-        String firstName = randomGenerator.getRandomString(3, 8);
-        String lastName = randomGenerator.getRandomString(3, 8);
-        String email = randomGenerator.getRandomString(4, 10) + "@gmail.com";
-        int age = randomGenerator.getInt(100) + 1;
+        String firstName = IRandomGenerator.getRandomString(3, 8);
+        String lastName = IRandomGenerator.getRandomString(3, 8);
+        String email = IRandomGenerator.getRandomString(4, 10) + "@gmail.com";
+        int age = IRandomGenerator.getInt(100) + 1;
         return new Client(firstName, lastName, email, age);
     }
 }
