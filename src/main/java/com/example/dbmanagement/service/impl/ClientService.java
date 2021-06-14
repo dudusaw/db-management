@@ -1,10 +1,11 @@
 package com.example.dbmanagement.service.impl;
 
 import com.example.dbmanagement.entity.Client;
-import com.example.dbmanagement.entity.ClientRepository;
+import com.example.dbmanagement.entity.repo.ClientRepository;
 import com.example.dbmanagement.entity.UserInfo;
 import com.example.dbmanagement.service.IClientService;
 import com.example.dbmanagement.util.RandomGenerator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@Slf4j
 public class ClientService implements IClientService {
 
     private final ClientRepository clientRepository;
@@ -54,7 +56,7 @@ public class ClientService implements IClientService {
 
     @Override
     public void deleteAll() {
-        clientRepository.deleteAll();
+        clientRepository.truncateTables();
     }
 
     @Override
@@ -75,11 +77,13 @@ public class ClientService implements IClientService {
 
     @Override
     public void addRandomClients(int num) {
+        List<Client> clientList = new ArrayList<>();
         for (int i = 0; i < num; i++) {
             Client randomClient = generateClient();
             randomClient.setUserInfo(generateUserInfo());
-            clientRepository.save(randomClient);
+            clientList.add(randomClient);
         }
+        clientRepository.saveAll(clientList);
     }
 
     private UserInfo generateUserInfo() {
